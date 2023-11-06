@@ -6,7 +6,6 @@ import (
 	"github.com/triaton/go-echo-boilerplate/database"
 	UserModels "github.com/triaton/go-echo-boilerplate/users/models"
 	"log"
-	"os"
 )
 
 func LoadTestEnv() error {

@@ -37,8 +37,6 @@ jobs:
         echo ${GOROOT}
         export GOPATH=/home/runner/work/
         go env
-      env:
-        GOPATH: ${{ runner.workspace }}
 
     - name: ls
       run: ls -a
