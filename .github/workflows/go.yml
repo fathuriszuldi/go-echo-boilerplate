@@ -42,11 +42,12 @@ jobs:
         echo ${GOROOT}
       env:
         GOPATH: ${{ runner.workspace }}
-
+        
+    - name: ls
+      run: ls -a
     - name: Test
       run: go test -v ./...
       env:
         DBURL: postgres://postgres:postgres@localhost:5432/forum
-    - name: ls
-      run: ls -a
+
     
