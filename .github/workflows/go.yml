@@ -41,7 +41,7 @@ jobs:
         echo ${GOPATH}
         echo ${GOROOT}
       env:
-        GOPATH: /home/runner/work/go-echo-boilerplate/go-echo-boilerplate/
+        GOPATH: ${{ runner.workspace }}
 
     - name: Test
       run: go test -v ./...
