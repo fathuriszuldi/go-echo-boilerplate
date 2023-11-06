@@ -9,7 +9,7 @@ import (
 )
 
 func LoadTestEnv() error {
-	err := godotenv.Load("$GOPATH/go-echo-boilerplate/go-echo-boilerplate/test.env")
+	err := godotenv.Load("home/runner/work/go-echo-boilerplate/go-echo-boilerplate/test.env")
 	if err != nil {
 		log.Fatal("failed to load test env config: ", err)
 	}
