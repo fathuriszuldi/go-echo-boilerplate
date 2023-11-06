@@ -36,6 +36,7 @@ jobs:
         echo ${GOPATH}
         echo ${GOROOT}
         export GOPATH=/home/runner/work/
+        go env
       env:
         GOPATH: ${{ runner.workspace }}
 
