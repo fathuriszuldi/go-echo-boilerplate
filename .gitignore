@@ -1,6 +1,5 @@
 .env
 cover.*
 gin-bin
-test.*
 .idea
 go-echo-boilerplate
