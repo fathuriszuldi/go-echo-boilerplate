@@ -7,12 +7,13 @@ import (
 	UserModels "github.com/triaton/go-echo-boilerplate/users/models"
 	"log"
 	"os"
+	"fmt"
 )
 
 func LoadTestEnv() error {
-	path, err := os.Getwd()
-	if err != nil {
-    	log.Println(err)
+	path, errOS := os.Getwd()
+	if errOS != nil {
+    	log.Println(errOS)
 	}
 	fmt.Println(path)
 	err := godotenv.Load(os.ExpandEnv("$GOPATH/go-echo-boilerplate/test.env"))
