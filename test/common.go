@@ -9,7 +9,7 @@ import (
 )
 
 func LoadTestEnv() error {
-	err := godotenv.Load()
+	err := godotenv.Load("test.env")
 	if err != nil {
 		log.Fatal("failed to load test env config: ", err)
 	}
