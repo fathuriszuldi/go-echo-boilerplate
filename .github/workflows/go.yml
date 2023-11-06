@@ -6,23 +6,23 @@ name: Go
 on: [push, workflow_dispatch]
 
 jobs:
+  services:
+    postgres:
+      image: postgres
 
-    services:
-      postgres:
-        image: postgres
+      env:
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_USER: postgres
+        POSTGRES_DB: forum
 
-        env:
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_USER: postgres
-          POSTGRES_DB: forum
-
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
+      options: >-
+        --health-cmd pg_isready
+        --health-interval 10s
+        --health-timeout 5s
+        --health-retries 5
+      ports:
+        - 5432:5432
+        
   build:
     runs-on: ubuntu-latest
     steps:
