@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: test-project
-        image: test-project/test-project:latest
+        image: test-project/test-project
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 1200
