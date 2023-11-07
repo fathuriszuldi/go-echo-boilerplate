@@ -41,8 +41,6 @@ jobs:
       env:
         DBURL: postgres://postgres:postgres@localhost:5432/forum
 
-
-jobs:
   build:
     environment: staging
     runs-on: ubuntu-latest
