@@ -76,7 +76,7 @@ jobs:
           key: ${{ secrets.SERVER_KEY}}
           password: ${{ secrets.SERVER_PASSWORD}}
           script: |
-            whoami
+            whoami 
             docker compose down
             docker pull ${{ vars.IMAGE_NAME}}
             cd /home/fathuriszuldi/test-project/go-echo-boilerplate
