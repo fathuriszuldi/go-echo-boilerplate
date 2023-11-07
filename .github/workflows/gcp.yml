@@ -15,8 +15,9 @@ jobs:
         
         - uses: google-github-actions/setup-gcloud@v1
           with:
-            service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY}}
+            credentials_json: ${{ secrets.SERVICE_ACCOUNT_KEY}}
             project_id: ${{ env.PROJECT_ID}}
+            service_account: 'github-actions@clean-framework-400905.iam.gserviceaccount.com'
             export_default_credential: true
 
         - name: build docker image
