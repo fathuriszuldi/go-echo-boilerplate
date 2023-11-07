@@ -50,7 +50,7 @@ jobs:
           uses: google-github-actions/setup-gcloud@v0
           with:
             version: latest
-            project_id: clean-framework-400905
+            project_id: ${{ env.PROJECT_ID}}
             service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY}}
             service_account: 'github-actions@clean-framework-400905.iam.gserviceaccount.com'
             install_components: 'gke-gcloud-auth-plugin'
