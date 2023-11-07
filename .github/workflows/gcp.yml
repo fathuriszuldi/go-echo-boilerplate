@@ -1,0 +1,36 @@
+name: push to gcp
+
+on: push
+
+jobs:
+  build-push-gcr:
+    name: build and push to gcr
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: test-project
+      PROJECT_ID: clean-framework-400905
+    steps:
+        - name: download code
+          uses: actions/checkout@v3
+        
+        - uses: google-github-actions/setup-gcloud@master
+          with:
+            service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+            project_id: ${{ env.PROJECT_ID}}
+            export_default_credential: true
+
+        - name: build docker image
+          run: docker build -t $IMAGE_NAME:latest .
+
+        - name: configure docker client
+          run: |-
+            gcloud auth configure-docker --quiet
+
+        - name: push docker image to container registry
+          env:
+            GIT_TAG: v0.1.0
+          run: |-
+            docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
+            docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
+            docker push gcr.io/$PROJECT_ID/$IMAGE_ID:latest
+            docker push gcr.io/$PROJECT_ID/$IMAGE_ID:$GIT_TAG
