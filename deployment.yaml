@@ -13,8 +13,8 @@ spec:
         app: test-project
     spec:
       containers:
-      - name: test-project:latest
-        image: test-project/test-project:latest
+      - name: test-project
+        image: asia-southeast1-docker.pkg.dev/clean-framework-400905/test-project/test-project
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 1200
