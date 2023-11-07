@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-project
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: test-project
+  template:
+    metadata:
+      labels:
+        app: test-project
+    spec:
+      containers:
+      - name: test-project
+        image: test-project/test-project:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 1200
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 1200
+          initialDelaySeconds: 5
+          periodSeconds: 15
+          timeoutSeconds: 5

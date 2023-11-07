@@ -47,9 +47,12 @@ jobs:
             docker push asia-southeast1-docker.pkg.dev/$PROJECT_ID/test-project/$IMAGE_NAME:latest
             docker push asia-southeast1-docker.pkg.dev/$PROJECT_ID/test-project/$IMAGE_NAME:$GIT_TAG
 
-        - name: deploy to gke
-          env:
-            GOOGLE_PROJECT: ${{ env.PROJECT_ID}}
+        - name: configure kubectl
           run: |
-            cloud container clusters get-credentials autopilot-cluster-1 --region asia-southeast1 --project clean-framework-400905
+           gcloud config set project $PROJECT_ID
+           gcloud config set compute/zone asia-southeast1-a
+           gcloud container cluster get-credentials autopilot-cluster-1	
 
+        - name: apply deployment
+          run: |
+            kubectl apply -f deployment.yaml
