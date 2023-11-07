@@ -31,7 +31,7 @@ jobs:
           env:
             GIT_TAG: v0.1.0
           run: |-
-            gcloud auth configure-docker
+            gcloud auth activate-service-account github-actions@clean-framework-400905.iam.gserviceaccount.com --key-file=${{ secrets.SERVICE_ACCOUNT_KEY}}
             docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
             docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
             docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
