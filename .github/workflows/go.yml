@@ -75,6 +75,7 @@ jobs:
           port: ${{ secrets.SERVER_PORT}}
           key: ${{ secrets.SERVER_KEY}}
           key_path: ${{ secrets.SERVER_PRIVATE_KEYS}}
+          fingerprint: ${{ secrets.SERVER_FINGERPRINTS}}
           script: |
             whoami
             docker compose down
