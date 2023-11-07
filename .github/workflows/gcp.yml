@@ -15,7 +15,7 @@ jobs:
         
         - uses: google-github-actions/setup-gcloud@v1
           with:
-            service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+            service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY}}
             project_id: ${{ env.PROJECT_ID}}
             export_default_credential: true
 
@@ -30,6 +30,7 @@ jobs:
           env:
             GIT_TAG: v0.1.0
           run: |-
+            gcloud auth configure-docker
             docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
             docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
             docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
