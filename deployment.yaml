@@ -13,7 +13,7 @@ spec:
         app: test-project
     spec:
       containers:
-      - name: test-project
+      - name: test-project:latest
         image: test-project/test-project:latest
         imagePullPolicy: IfNotPresent
         ports:
