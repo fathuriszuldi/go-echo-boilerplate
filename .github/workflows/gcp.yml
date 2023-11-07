@@ -50,7 +50,7 @@ jobs:
           uses: google-github-actions/setup-gcloud@v0
           with:
             version: latest
-            project_id: $PROJECT_ID
+            project_id: clean-framework-400905
             service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY}}
             service_account: 'github-actions@clean-framework-400905.iam.gserviceaccount.com'
             install_components: 'gke-gcloud-auth-plugin'
@@ -58,7 +58,7 @@ jobs:
         - name: configure kubectl
           run: |
            gcloud components update
-           gcloud config set project $PROJECT_ID
+           gcloud config set project clean-framework-400905
            gcloud config set compute/zone asia-southeast1-a
            gcloud container cluster get-credentials autopilot-cluster-1	
 
