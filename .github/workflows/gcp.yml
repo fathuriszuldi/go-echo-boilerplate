@@ -43,7 +43,7 @@ jobs:
           run: |-
             gcloud auth login
             gcloud auth configure-docker asia-southeast1-docker.pkg.dev --quiet
-            docker tag $IMAGE_NAME:latest asia-southeast1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
-            docker tag $IMAGE_NAME:latest asia-southeast1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
-            docker push asia-southeast1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
-            docker push asia-southeast1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
+            docker tag $IMAGE_NAME:latest asia-southeast1-docker.pkg.dev/$PROJECT_ID/test-project/$IMAGE_NAME:latest
+            docker tag $IMAGE_NAME:latest asia-southeast1-docker.pkg.dev/$PROJECT_ID/test-project/$IMAGE_NAME:$GIT_TAG
+            docker push asia-southeast1-docker.pkg.dev/$PROJECT_ID/test-project/$IMAGE_NAME:latest
+            docker push asia-southeast1-docker.pkg.dev/$PROJECT_ID/test-project/$IMAGE_NAME:$GIT_TAG
