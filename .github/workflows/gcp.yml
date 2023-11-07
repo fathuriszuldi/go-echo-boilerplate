@@ -18,6 +18,7 @@ jobs:
             service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY}}
             project_id: ${{ env.PROJECT_ID}}
             service_account: 'github-actions@clean-framework-400905.iam.gserviceaccount.com'
+            install_components: 'gke-gcloud-auth-plugin'
             export_default_credential: true
 
         - name: build docker image
@@ -45,3 +46,10 @@ jobs:
             docker tag $IMAGE_NAME:latest asia-southeast1-docker.pkg.dev/$PROJECT_ID/test-project/$IMAGE_NAME:$GIT_TAG
             docker push asia-southeast1-docker.pkg.dev/$PROJECT_ID/test-project/$IMAGE_NAME:latest
             docker push asia-southeast1-docker.pkg.dev/$PROJECT_ID/test-project/$IMAGE_NAME:$GIT_TAG
+
+        - name: deploy to gke
+          env:
+            GOOGLE_PROJECT: ${{ env.PROJECT_ID}}
+          run: |
+            cloud container clusters get-credentials autopilot-cluster-1 --region asia-southeast1 --project clean-framework-400905
+
