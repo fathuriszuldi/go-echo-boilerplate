@@ -42,6 +42,7 @@ jobs:
         DBURL: postgres://postgres:postgres@localhost:5432/forum
 
   build:
+    needs: test
     environment: staging
     runs-on: ubuntu-latest
     steps:
@@ -60,4 +61,22 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME}}/test-project
-    
+
+  deployment:
+    needs: build
+    environment: staging
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploying to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER}}
+          username: ${{ secrets.SERVER_USERNAME}}
+          port: ${{ secrets.SERVER_PORT}}
+          key: ${{ secrets.SERVER_KEY}}
+          fingerprint: ${{ secrets.SERVER_FINGERPRINTS}}
+          script: |
+            whoami
+            docker compose down
+            docker pull ${{ vars.IMAGE_NAME}}
+            docker compose up -d

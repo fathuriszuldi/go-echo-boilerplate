@@ -15,7 +15,7 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-    image: test-project
+    image: fathuriszuldi/test-project
     container_name: test-project-container
     restart: always
     ports:
