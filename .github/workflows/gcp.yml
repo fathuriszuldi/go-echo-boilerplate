@@ -58,8 +58,9 @@ jobs:
         - name: configure kubectl
           run: |
            gcloud components update
-           gcloud container cluster get-credentials autopilot-cluster-1	--region asia-southeast1
-     
+           gcloud container clusters get-credentials autopilot-cluster-1 --region asia-southeast1
+           gcloud config set project clean-framework-400905
+           gcloud config set compute/zone asia-southeast1-a
           
 
         - name: apply deployment
