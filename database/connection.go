@@ -16,7 +16,7 @@ var instance *gorm.DB
 func GetInstance() *gorm.DB {
 	onceDb.Do(func() {
 		databaseConfig := config.DatabaseNew().(*config.DatabaseConfig)
-		db, err := gorm.Open("postgres", fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s",
+		db, err := gorm.Open("postgres", fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=disable",
 			databaseConfig.Psql.DbHost,
 			databaseConfig.Psql.DbPort,
 			databaseConfig.Psql.DbUsername,

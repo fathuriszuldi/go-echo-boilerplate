@@ -1,0 +1,39 @@
+version: "3.9"
+services: 
+  postgres-db:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=forum
+    networks:
+      - test-project
+
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: test-project
+    container_name: test-project-container
+    restart: always
+    ports:
+      - 1200:1200
+    working_dir: /golang/app
+    volumes:
+      - ./:/golang/app
+    environment:
+      DbHost : "postgres-db"
+      DbPort : 5432
+    depends_on:
+      - postgres-db
+    links:
+      - postgres-db
+    networks:
+      - test-project
+    
+
+networks:
+  test-project:
+    driver: bridge
